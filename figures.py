@@ -1,5 +1,5 @@
 class Figure:
-    def square(self):
+    def area(self):
         pass
 
 
@@ -25,7 +25,7 @@ class Triangle(Figure):
         return self.a + self.b + self.c
 
 
-    def square(self):
+    def area(self):
         n = (self.a + self.b + self.c) / 2
         return (n * (n - self.a)*(n - self.b)*(n - self.c))**(1/2)
 
@@ -47,7 +47,7 @@ class Circle(Figure):
         return 2 * self.number_pi * self.radius
 
 
-    def square(self):
+    def area(self):
         return self.number_pi * self.radius ** 2
 
 
@@ -64,7 +64,7 @@ class Rectangle(Figure):
         return f'Прямоугольник со сторонами a, b: {self.a}, {self.b} соответственно'
 
 
-    def square(self):
+    def area(self):
         return self.a * self.b
 
 
@@ -72,15 +72,54 @@ class Rectangle(Figure):
         return (self.a + self.b) * 2
 
 
+class Square(Rectangle):
+    def __init__(self, side):
+        super().__init__(side, side)
+
+    def __str__(self):
+        return f'Квадрат со сторонами a: {self.a}'
+
+
+class Equilateral_triangle(Triangle):
+    def __init__(self, side):
+        super().__init__(side, side, side)
+
+
+    def __str__(self):
+        return f'Эллипс с полуосями a, b: {self.a}'
+
+
+class Ellips(Circle):
+    def __init__(self, a, b):
+        if a > 0 and b > 0:
+            self.a = a
+            self.b = b
+            self.number_pi = 3.1412
+
+
+    def __str__(self):
+        return f'Эллипс с полуосями a, b: {self.a}, {self.b}'
+
+
+    def area(self):
+        return self.a * self.b * self.number_pi
+
+
+    def perimetr(self):
+        return self.number_pi * (3*(self.a + self.b) - ((3 * self.a + self.b) * (self.a + 3 * self.b)) ** 0.5)
+
 tri = Triangle(3, 4, 5)
 cir = Circle(6)
 rect = Rectangle(7, 8)
+tri_eq = Equilateral_triangle(9)
+sq = Square(10)
+el = Ellips(11, 12)
 
-figures = [tri, cir, rect]
+figures = (tri, cir, rect, tri_eq, sq, el,)
 
 for f in figures:
     print("="*35)
     print(f'Фигура: {f.__class__.__name__}')
     print(f)
     print(f'Периметр: {f.perimetr():.2f}')
-    print(f'Площадь: {f.square():.2f}')
+    print(f'Площадь: {f.area():.2f}')
