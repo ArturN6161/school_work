@@ -1,38 +1,38 @@
-# class Calculator:
-#     def __init__(self, a, b):
-#         self.a = a
-#         self.b = b
-#
-#
-#     def sum(self):
-#         return self.a + self.b
-#
-#
-#     def different(self):
-#         return self.a - self.b
-#
-#
-#     def product(self):
-#         return self.a * self.b
-#
-#
-#     def quotient(self):
-#         return self.a / self.b
-#
-#
-#     def get_info(self, action=""):
-#         if action == "+":
-#             print(f'numbers: {self.a}, {self.b} is {calc.sum()}')
-#         if action == "-":
-#             print(f'numbers: {self.a}, {self.b} is {calc.different()}')
-#         if action == "*":
-#             print(f'numbers: {self.a}, {self.b} is {calc.product()}')
-#         if action == "/":
-#             print(f'numbers: {self.a}, {self.b} is {calc.quotient()}')
-#
-#
-# calc = Calculator(8, 4)
-# calc.get_info("/")
+class Calculator:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+
+    def sum(self):
+        return self.a + self.b
+
+
+    def different(self):
+        return self.a - self.b
+
+
+    def product(self):
+        return self.a * self.b
+
+
+    def quotient(self):
+        return self.a / self.b
+
+
+    def get_info(self, action=""):
+        if action == "+":
+            print(f'numbers: {self.a}, {self.b} is {calc.sum()}')
+        if action == "-":
+            print(f'numbers: {self.a}, {self.b} is {calc.different()}')
+        if action == "*":
+            print(f'numbers: {self.a}, {self.b} is {calc.product()}')
+        if action == "/":
+            print(f'numbers: {self.a}, {self.b} is {calc.quotient()}')
+
+
+calc = Calculator(8, 4)
+calc.get_info("/")
 
 
 # class Python:
