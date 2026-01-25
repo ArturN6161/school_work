@@ -31,24 +31,24 @@ class Triangle(Figure):
 
 
 class Circle(Figure):
-    def __init__(self, radius):
-        if radius > 0:
-            self.radius = radius
+    def __init__(self, a):
+        if a > 0:
+            self.a = a
             self.number_pi = 3.1412
         else:
             print('Круга с радиусом 0 не существует. Этот объект является точкой!')
 
 
     def __str__(self):
-        return f'Круг с радиусом {self.radius}'
+        return f'Круг с радиусом {self.a}'
 
 
     def perimetr(self):
-        return 2 * self.number_pi * self.radius
+        return 2 * self.number_pi * self.a
 
 
     def area(self):
-        return self.number_pi * self.radius ** 2
+        return self.number_pi * self.a ** 2
 
 
 class Rectangle(Figure):
@@ -92,9 +92,8 @@ class Equilateral_triangle(Triangle):
 class Ellips(Circle):
     def __init__(self, a, b):
         if a > 0 and b > 0:
-            self.a = a
+            super().__init__(a)
             self.b = b
-            self.number_pi = 3.1412
 
 
     def __str__(self):
