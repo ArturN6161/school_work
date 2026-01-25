@@ -35,18 +35,19 @@
 # calc.get_info("/")
 
 
-class Python:
-    def __init__(self, symbol_input):
-        self.symbol_input = symbol_input
+# class Python:
+# #     def __init__(self, symbol_input = None):
+# #         self.symbol_input = symbol_input
+# #
+# #     def get_String(self):
+# #         self.symbol_input = input('Введите текст, чтобы вернуть его в верхнем регистре: ')
+# #
+# #     def print_String(self):
+# #         print(f'Вот текст в верхнер регистре: {self.symbol_input.upper()}')
+# #
+# #
+# # print_symbol = Python()
+# # print_symbol.get_String()
+# # print_symbol.print_String()
 
-    def get_String(self):
-        return self.symbol_input
 
-
-    def print_String(self):
-        if self.symbol_input:
-          print(self.get_String().upper())
-
-
-print_symbol = Python(symbol_input="f")
-print_symbol.print_String()
