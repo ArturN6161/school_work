@@ -17,6 +17,9 @@ class Triangle(Figure):
             print('Такого треугольника не существует!')
 
 
+    def __
+
+
     def __str__(self):
         return f'Треугольник со сторонами a, b, c: {self.a}, {self.b}, {self.c} соответственно'
 
