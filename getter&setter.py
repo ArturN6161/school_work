@@ -85,14 +85,17 @@ class Solder:
             return False
 
     @service_number.setter
-    def service_number(self, new_service_number):
+    def service_number(self, new_service_number: int):
         print(f'Попытка изменить текущий порядковый номер для {self.name}')
-        check = int(input("Введите текущий номер для подтверждения: "))
-        if check == self.__service_number:
-            self.service_number = new_service_number
-            print(f"Номер успешно изменен на {new_service_number}")
-        else:
-            print("Отказ! Номер не изменен.")
+        try:
+            check = int(input("Введите текущий номер для подтверждения: "))
+            if check == self.__service_number:
+                self.__service_number = new_service_number
+                print(f"Номер успешно изменен на {new_service_number}")
+            else:
+                print("Отказ! Номер не изменен.")
+        except ValueError:
+            print('Нужно ввести число.')
 
 
 sol = Solder('Jone', 'Рядовой', 228)
@@ -101,5 +104,6 @@ print(sol.rank)
 print(sol.service_number)
 sol.promote()
 print(sol.rank)
+sol.service_number = 12
 
 
