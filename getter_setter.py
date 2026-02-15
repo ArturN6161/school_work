@@ -228,7 +228,7 @@ class Bank:
             self._log_history(self.name, to_whom.name, amount)
             print(f"Перевод от {self.name} к {to_whom.name} на сумму {amount} прошел успешно.")
         else:
-            print("Маловато денег на счету!")
+            print("Не достаточно денежных на счету!")
 
 
 
