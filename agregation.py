@@ -122,7 +122,7 @@ class Product:
 
     def _identification(self):
         self.file_name = ManagedFile.db_catalog
-        ManagedFile.read_json(filename=self.file_name) # asdadas
+        ManagedFile.read_json(filename=self.file_name) # asdada
 
         if not self.file_name:
             new_id = 1
