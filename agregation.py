@@ -84,9 +84,6 @@ import json
 
 
 class ManagedFile:
-    db_catalog = 'catalog.json'
-    db_accounts = 'accounts.json'
-    db_orders = 'orders.json'
     """Контекстный менеджер для безопасной работы с БД."""
     def __init__(self, filename, mode='r'):
         self.filename = filename
@@ -102,45 +99,59 @@ class ManagedFile:
         if self.file:
             self.file.close()
 
-    def read_json(self, filename):
-        self.filename = filename
-        if not os.path.exists(self.filename):
+
+class DatabaseManager:
+    db_catalog = 'catalog.json'
+    db_accounts = 'accounts.json'
+    db_orders = 'orders.json'
+
+    @staticmethod
+    def read_json(filename):
+        if not os.path.exists(filename):
             return {}
-        with ManagedFile(self.filename, mode='r') as file:
+        with ManagedFile(filename, mode='r') as file:
             try:
                 return json.load(file)
             except json.JSONDecodeError:
                 return {}
 
+    @staticmethod
+    def write_json(file_name, data):
+        with ManagedFile(filename=file_name, mode='w') as file:
+            json.dump(data, file, ensure_ascii=False, indent=4)
+
+    @staticmethod
+    def register_item(file_name, item_data):
+        data = DatabaseManager.read_json(file_name)
+
+        if not data:
+            new_id = "1"
+
+        else:
+            current_ids = [int(k) for k in data.keys()]
+            new_id = str(max(current_ids) + 1)
+
+        data[new_id] = item_data
+
+        DatabaseManager.write_json(file_name, data)
+
+        return new_id
+
+
+
 
 class Product:
+    file_name = DatabaseManager.db_catalog
     def __init__(self, name, price):
         self.name = name
         self.price = price
-        self.id_product = None
-        self._identification()
 
-    def _identification(self):
-        self.file_name = ManagedFile.db_catalog
-        ManagedFile.read_json(filename=self.file_name) # asdada
+    def add_to_cart(self, name):
+        self.name = name
+        info = {'name': self.name, 'price': self.price}
+        self.id_product = DatabaseManager.register_item(self.file_name, info)
 
-        if not self.file_name:
-            new_id = 1
-        else:
-            current_ids = [int(k) for k in self.file_name.keys()]
-            new_id = max(current_ids) + 1
-
-        self.id_product = str(new_id)
-
-        data = data[self.id_product] = {
-            'name': self.name,
-            'price': self.price
-        }
-
-        with ManagedFile(self.db_file, mode='w') as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
-
-            print(f'Товар "{self.name}" успешно добавлен в каталог (артикул: {self.id_product})')
+        print(f'Товар "{self.name}" успешно добавлен в каталог (артикул: {self.id_product})')
 
 
 
@@ -153,24 +164,6 @@ class Order:
         self.status = 'Новый'
         self._identification()
 
-
-
-    def _identification(self):
-        data = {}
-        if os.path.exists(self.db_file):
-            with ManagedFile(self.db_file, mode='r') as file:
-                try:
-                    data = json.load(file)
-                except json.JSONDecodeError:
-                    data = {}
-
-        if not data:
-            new_id = 1
-        else:
-            current_ids = [int(k) for k in data.keys()]
-            new_id = max(current_ids) + 1
-
-        self.id_order = str(new_id)
 
         data[self.id_order] = {
             'List products': self.shopping_list,
