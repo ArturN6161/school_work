@@ -1,49 +1,50 @@
-class Calculator:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+# class Calculator:
+
+def summma(a, b):
+    return a + b
 
 
-    def sum(self):
-        return self.a + self.b
+def different(a, b):
+    return a - b
 
 
-    def different(self):
-        return self.a - self.b
+def product(a, b):
+    return a * b
 
 
-    def product(self):
-        return self.a * self.b
+def quotient(a, b):
+    if b != 0:
+        return a / b
+    else:
+        raise ZeroDivisionError
 
 
-    def quotient(self):
-        return self.a / self.b
+# def get_info(action=""):
+#     if action == "+":
+#         print(f'numbers: {a}, {b} is {calc.sum()}')
+#     if action == "-":
+#         print(f'numbers: {a}, {b} is {calc.different()}')
+#     if action == "*":
+#         print(f'numbers: {a}, {b} is {calc.product()}')
+#     if action == "/":
+#         print(f'numbers: {a}, {b} is {calc.quotient()}')
 
 
-    def get_info(self, action=""):
-        if action == "+":
-            print(f'numbers: {self.a}, {self.b} is {calc.sum()}')
-        if action == "-":
-            print(f'numbers: {self.a}, {self.b} is {calc.different()}')
-        if action == "*":
-            print(f'numbers: {self.a}, {self.b} is {calc.product()}')
-        if action == "/":
-            print(f'numbers: {self.a}, {self.b} is {calc.quotient()}')
-
-
-calc = Calculator(8, 4)
-calc.get_info("/")
-
+summma(8, 4)
+different(8, 4)
+product(8, 4)
+#quotient(8, 0)
+quotient(8, 4)
 
 # class Python:
-# #     def __init__(self, symbol_input = None):
-# #         self.symbol_input = symbol_input
+# #     def __init__(, symbol_input = None):
+# #         symbol_input = symbol_input
 # #
-# #     def get_String(self):
-# #         self.symbol_input = input('Введите текст, чтобы вернуть его в верхнем регистре: ')
+# #     def get_String():
+# #         symbol_input = input('Введите текст, чтобы вернуть его в верхнем регистре: ')
 # #
-# #     def print_String(self):
-# #         print(f'Вот текст в верхнер регистре: {self.symbol_input.upper()}')
+# #     def print_String():
+# #         print(f'Вот текст в верхнер регистре: {symbol_input.upper()}')
 # #
 # #
 # # print_symbol = Python()

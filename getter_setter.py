@@ -185,7 +185,7 @@ class ManagedFile:
 
 
 class Bank:
-    db_file = 'accaunts.json'
+    db_file = 'accounts.json'
     def __init__(self, name, balance):
         self.name = name
         self.__balance = balance
