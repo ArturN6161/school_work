@@ -46,8 +46,8 @@ class DatabaseManager:
 
 
     @staticmethod
-    def register_item(file_name, item_data):
-        data = DatabaseManager.read_json(file_name)
+    def register_item(filename, item_data):
+        data = DatabaseManager.read_json(filename)
 
         if not data:
             new_id = "1"
@@ -88,7 +88,7 @@ class Product:
         self.price = price
 
         # Данные для записи
-        info = {'name': self.name, 'price': self.price}
+        info = {'Наименование': self.name, 'Цена': self.price}
 
         # Передаем путь напрямую из DatabaseManager
         self.id_product = DatabaseManager.register_item(DatabaseManager.db_catalog, info)
@@ -175,8 +175,8 @@ if __name__ == "__main__":
     p2 = Product("Чипсы", 150)
 
     # Теперь проверим, что они реально добавились
-    catalog_data = DatabaseManager.read_json(DatabaseManager.db_catalog)
-    print(f"Сейчас в каталоге: {catalog_data}")
+    # catalog_data = DatabaseManager.read_json(DatabaseManager.db_catalog)
+    # print(f"Сейчас в каталоге: {catalog_data}")
 
     print("\n--- Шаг 2: Создаем новый заказ ---")
     my_order = Order()

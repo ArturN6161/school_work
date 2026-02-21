@@ -1,6 +1,6 @@
 # class Calculator:
 
-def summma(a, b):
+def summa(a, b):
     return a + b
 
 
@@ -15,8 +15,8 @@ def product(a, b):
 def quotient(a, b):
     if b != 0:
         return a / b
-    else:
-        raise ZeroDivisionError
+    # else:
+    #     raise ZeroDivisionError
 
 
 # def get_info(action=""):
@@ -30,11 +30,11 @@ def quotient(a, b):
 #         print(f'numbers: {a}, {b} is {calc.quotient()}')
 
 
-summma(8, 4)
-different(8, 4)
-product(8, 4)
-#quotient(8, 0)
-quotient(8, 4)
+# summa(8, 4)
+# different(8, 4)
+# product(8, 4)
+# #quotient(8, 0)
+# quotient(8, 4)
 
 # class Python:
 # #     def __init__(, symbol_input = None):
@@ -50,5 +50,3 @@ quotient(8, 4)
 # # print_symbol = Python()
 # # print_symbol.get_String()
 # # print_symbol.print_String()
-
-
