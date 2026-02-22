@@ -41,8 +41,8 @@ class DatabaseManager:
 
     @staticmethod
     def write_json(filename, data):
-        with ManagedFile(filename, mode='w') as file:
-            json.dump(data, file, ensure_ascii=False, indent=4)
+        with ManagedFile(filename, mode='w') as file_object:
+            json.dump(data, file_object, ensure_ascii=False, indent=4)
 
 
     @staticmethod
@@ -54,7 +54,10 @@ class DatabaseManager:
         else:
             current_ids = [int(k) for k in data.keys()]
             new_id = str(max(current_ids) + 1)
+        # добавляем товар в словарь
         data[new_id] = item_data
+        # сохраняем товар в файл
+        DatabaseManager.write_json(filename, data)
 
         return new_id
 
@@ -62,7 +65,7 @@ class DatabaseManager:
     def found_item_id(filename, search_value):
         data = DatabaseManager.read_json(filename)
         for pid, info in data.items():
-            if info.get('name', '').lower() == search_value.lower():
+            if info.get('Наименование', '').lower() == search_value.lower():
                 return pid
         return None
 
@@ -92,7 +95,7 @@ class Product:
 
         # Передаем путь напрямую из DatabaseManager
         self.id_product = DatabaseManager.register_item(DatabaseManager.db_catalog, info)
-
+        DatabaseManager.write_json(DatabaseManager.db_catalog, info)
         print(f'Товар "{self.name}" успешно добавлен (ID: {self.id_product})')
 
     # def add_to_shop(self, name):
@@ -175,8 +178,8 @@ if __name__ == "__main__":
     p2 = Product("Чипсы", 150)
 
     # Теперь проверим, что они реально добавились
-    # catalog_data = DatabaseManager.read_json(DatabaseManager.db_catalog)
-    # print(f"Сейчас в каталоге: {catalog_data}")
+    catalog_data = DatabaseManager.read_json(DatabaseManager.db_catalog)
+    print(f"Сейчас в каталоге: {catalog_data}")
 
     print("\n--- Шаг 2: Создаем новый заказ ---")
     my_order = Order()
