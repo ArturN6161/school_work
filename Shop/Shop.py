@@ -52,7 +52,7 @@ class DatabaseManager:
         if not data:
             new_id = "1"
         else:
-            current_ids = [int(k) for k in data.keys()]
+            current_ids = [k for k in data.keys()]
             new_id = str(max(current_ids) + 1)
         # добавляем товар в словарь
         data[new_id] = item_data
@@ -95,7 +95,6 @@ class Product:
 
         # Передаем путь напрямую из DatabaseManager
         self.id_product = DatabaseManager.register_item(DatabaseManager.db_catalog, info)
-        DatabaseManager.write_json(DatabaseManager.db_catalog, info)
         print(f'Товар "{self.name}" успешно добавлен (ID: {self.id_product})')
 
     # def add_to_shop(self, name):
